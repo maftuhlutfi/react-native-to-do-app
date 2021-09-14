@@ -7,6 +7,10 @@ export default function App() {
   const [toDoList, setToDoList] = useState([])
 
   const handleAdd = () => {
+    if (input.length < 1) {
+      alert('Please input to do')
+      return
+    }
     setToDoList(prev => [...prev, input])
     setInput('')
   }
@@ -24,7 +28,7 @@ export default function App() {
       </View>
       <View>
         <FlatList 
-          keyExtractor={(item, index) => index}
+          keyExtractor={(item, index) => index.toString()}
           data={toDoList}
           renderItem={li => (
             <TouchableOpacity onPress={() => handleDelete(li.item)}>
